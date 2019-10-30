@@ -15,5 +15,6 @@ int main(int argc, char const *argv[])
         int c = fgetc(fichero); // Check EOF
         printf("%c\n" , c);
    }
+   fclose(fichero);
     return 0;
 }
