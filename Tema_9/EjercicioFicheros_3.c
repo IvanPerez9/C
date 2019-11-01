@@ -13,8 +13,8 @@ int main(int argc, char const *argv[])
         perror("Error al escribir en el fichero" );
     }
     printf("Introduce un frase a escribir en el fichero: ");
-    char entrada[] = "";
-    scanf("%s", &entrada);
+    char entrada[50];
+    fgets(entrada, 50, stdin); // stdin entrada standar
     fputs(entrada , fichero);
 
     fclose(fichero);
