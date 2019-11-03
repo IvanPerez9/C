@@ -2,6 +2,8 @@
 Escribe un programa que genere un array con N números aleatorios en el rango [0,100]. Tras
 ello, el programa deberá calcular el array con las sumas acumuladas, que guardará en cada
 posición i la suma de todos los elementos de ese array entre las posiciones [0,i].
+
+Hechos en el tema 5
 */
 #include <time.h>
 #include <stdlib.h>
