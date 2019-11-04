@@ -11,13 +11,12 @@ realizado 5 intentos erróneos
 
 int main(int argc, char const *argv[])
 {
-    /* code */
     int array[10];
 
     printf("Introducir un palabra como maximo de 10 caracteres \n");
     scanf("Palabra: %s \n" , &(array[0]));
 
-    for (size_t i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         /* code */
         printf("Introduzca una letra de esa palabra, tiene %d intentos \n" , i );

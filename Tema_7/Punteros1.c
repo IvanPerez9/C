@@ -22,9 +22,9 @@ int main(int argc, char const *argv[])
     int* min = array;
     int* max = array;
 
-    for (size_t i = 0; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
-        if (array[i]> *max) max = (array+i);
+        if (array[i]> *max) max = &array[i]; // Max apunta al valor
         if (array[i]< *min) min = (array+i);
     }
 
