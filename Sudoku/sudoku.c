@@ -19,6 +19,9 @@ int check3x3 (int tablero[N][N] , int iniColumna, int iniFila);
 int checkAll3x3 (int tablero[N][N]);
 int checkConditions (int tablero[N][N]);
 
+void writeSudokuFile (int tablero[N][N]);
+void readSudokuFromFile ();
+
 int main(int argc, char const *argv[])
 {
     int tablero[N][N] = {{8,3,5, 4,1,6, 9,2,7},
@@ -33,27 +36,21 @@ int main(int argc, char const *argv[])
                          {9,8,1, 3,4,5, 2,7,6},
                          {3,7,4, 9,6,2, 8,1,5}};
 
-    pintarTablero(tablero);
         /* Prueba entrada teclado
         int tableroPrueba [N][N] = {};
         introducirSudoku(tableroPrueba);
         pintarTablero(tableroPrueba);
         */
-    /*
-    Menu: Con 3 opciones -> 1. Introducir Sudoku
-                            2. Comprobar que el Sudoku es correcto
-                            3. Salir
-    */
     int opcion;
-    printf("%d", checkAll3x3(tablero));
-    /*
     do
     {
         printf("Menu: \n");
         printf("1. Introducir nuevo Sudoku \n");
         printf("2. Comprobar si el sudoku es correcto \n");
-        printf("3. Salir del programa \n");
-        scanf("_ %d", &opcion);
+        printf("3. Guardar sudoku en fichero binario \n");
+        printf("4. Leer sudoku de fichero binario y mostrarlo \n");
+        printf("5. Salir del programa \n");
+        scanf("%d", &opcion);
 
         switch (opcion)
         {
@@ -66,16 +63,23 @@ int main(int argc, char const *argv[])
             break;
         
         case 3:
+            writeSudokuFile(tablero);
+            break;
+
+        case 4:
+            readSudokuFromFile();
+            break;
+
+        case 5:
             printf("Saliendo.. \n");
             break;
         
         default:
             printf("La opcion elegida no es correcta \n");
+            exit(0);
             break;
         }
-    } while (opcion != 3);
-    */
-    
+    } while (opcion != 5);
 }
 
 /*
@@ -125,13 +129,11 @@ int checkFilas (int tablero[N][N]){
 
         for (int col = 0; col < N; col++)
         {
-            repe[tablero[fil][col]]++;
-        }
-
-        // Empezar en 1, no hay valor 0 en el tablero
-        for (int k = 1; k <= N; k++)
-        {
-            if (repe[k] != 1){
+            // Paro en cuando tenga un valor mayor a 0
+            // Si lo encuentro -> Arrya bool, sustituyo 0 por 1 en ese valor
+            if (repe[tablero[fil][col]] == 0){
+                repe[tablero[fil][col]]++;
+            } else {
                 return 0;
             }
         }
@@ -151,13 +153,9 @@ int checkColumnas (int tablero[N][N]){
 
         for (int fil = 0; fil < N; fil++)
         {
-            repe[tablero[fil][col]]++;
-        }
-
-        // Empezar en 1, no hay valor 0 en el tablero
-        for (int k = 1; k <= N; k++)
-        {
-            if (repe[k] != 1){
+           if (repe[tablero[fil][col]] == 0){
+                repe[tablero[fil][col]]++;
+            } else {
                 return 0;
             }
         }
@@ -177,17 +175,20 @@ int check3x3 (int tablero[N][N] , int iniColumna, int iniFila){
     {
         for (int j = iniColumna; j < iniColumna+3; j++)
         {
-            repe[tablero[i][j]]++;
+            if (repe[tablero[i][j]] == 0){
+                repe[tablero[i][j]]++;
+            } else {
+                return 0;
+            }
         }
     }
-    
-    // Inicializar en valor 1
+    /*OLD: Inicializar en valor 1 -> En el repe de antes menos complejidad
     for (int k = 1; k <= N; k++)
     {
         if (repe[k] != 1){
             return 0;
         }
-    }
+    }*/
     return 1;
 }
 
@@ -200,9 +201,9 @@ return: Bool -> Si todos los tableros cumplen
 int checkAll3x3 (int tablero[N][N]){
     for (int i = 0; i < N; i+=3)
     {
-        for (int j = 0; i < N; j+=3)
+        for (int j = 0; j < N; j+=3)
         {
-            if ( ! check3x3(tablero , i ,j)){
+            if ( ! check3x3(tablero , i ,j)){ // Chequear not -> bool
                 return 0;
             }
         }
@@ -213,6 +214,7 @@ int checkAll3x3 (int tablero[N][N]){
 /*
 Mira si sudoku es valido.
 Check if is a valid sudoku
+return void -> Frase "Valido"
 */
 int checkConditions (int tablero[N][N]){
     /* La suma de cada fila = 54
@@ -220,5 +222,52 @@ int checkConditions (int tablero[N][N]){
        La suma de cada 3x3 = 54
        Suma total = 486
     */
-    return checkAll3x3(tablero) && checkColumnas(tablero) && checkFilas(tablero) ;
+    if( checkAll3x3(tablero) && checkColumnas(tablero) && checkFilas(tablero)) {
+        printf("Sudoku valido \n");
+    } else {
+        printf("Sudoku no valido \n");
+    }
+}
+
+/*
+Escribir un sudoku en un fichero binario
+params: Sudoku
+return: Fichero binario
+*/
+void writeSudokuFile (int tablero[N][N]){
+    FILE * fichero;
+    if ((fichero = fopen("FicheroSudoku.bin" , "wb+")) == NULL) {
+        perror("Error al abrir el fichero modo escritura");
+    }
+
+    if (fwrite(tablero , sizeof(int) , N*N , fichero) != 81){
+        printf("Error al escribir");
+    }
+    fclose(fichero);
+}
+
+/*
+Leer sudoku desde fichero
+params: 
+return: Mostrado de sudoku leido desde el fichero
+*/
+void readSudokuFromFile (){
+    FILE * fichero;
+    if ((fichero = fopen("FicheroSudoku.bin" , "rb")) == NULL) {
+        perror("Error al abrir el fichero modo lectura");
+    }
+
+    int grid [N][N] = {0};
+
+    if ((fread(grid , sizeof(int) , N*N , fichero)) != 81){
+        if (feof(fichero)){
+            printf("Fichero EOF temprano");
+        } else {
+            printf("Error leyendo fichero");
+        }
+    }
+    fclose(fichero);
+
+    // Mostrarlo
+    pintarTablero(grid);
 }

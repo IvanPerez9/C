@@ -1,0 +1,11 @@
+ 
+ - Saber memoria dinamica bien
+ - Matrices en memoria dinamica
+ - Operaciones con Matrices
+ - Struct ojo -> Agenda
+ - Entrada y salida ficheros -> fwrite y fputs diferencias ..
+ - Operaciones basicas, acceso datos, mostrado pantalla, lectura pantalla
+ - Punteros general
+ - Punteros array y matriz -> posicion , recorrer
+ - Estructuras, listas ...
+ - Debuggear
