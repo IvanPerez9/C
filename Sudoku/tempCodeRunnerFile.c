@@ -1,0 +1,1 @@
+        printf("2. Comprobar si el sudoku es correcto \n");

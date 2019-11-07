@@ -2,6 +2,11 @@
 //Implementa un programa que cree dos arrays dinámicos de N elementos y
 //guarde en un tercer array dinámico la suma de cada par de posiciones 
 
+// SUMA DE ARRAYS
+
+#include <stdio.h>
+#include <stdlib.h>
+
 int main(int argc, char const *argv[])
 {
     int * q;
@@ -15,14 +20,15 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < n; i++)
     {
+        // Mismo acceso
         *(q+i) = rand()%100 ;
          q[i] = rand()%100;
     }
 
     for (int i = 0; i < n; i++)
     {
-        *(p+i) = rand()%100 ;
-        p[i] = rand()%100;
+       *(p+i) = rand()%100 ;
+       p[i] = rand()%100;
     }
 
     for (int i = 0; i < n; i++)
@@ -34,15 +40,10 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < n; i++)
     {
         /* code */
-        free(t[i]);
-        free(p[i]);
-        free(q[i]);
+        free(&t[i]);
+        free(&p[i]);
+        free(&q[i]);
     }
-    
-    
-    
-
-
     
     return 0;
 }

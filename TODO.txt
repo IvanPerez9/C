@@ -8,4 +8,4 @@
  - Punteros general
  - Punteros array y matriz -> posicion , recorrer
  - Estructuras, listas ...
- - Debuggear
+ - Debuggear 

@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
     {
         printf("Menu: \n");
         printf("1. Introducir nuevo Sudoku \n");
-        printf("2. Comprobar si el sudoku es correcto \n");
+        printf("2. Comprobar si fichero es correcto \n");
         printf("3. Guardar sudoku en fichero binario \n");
         printf("4. Leer sudoku de fichero binario y mostrarlo \n");
         printf("5. Salir del programa \n");
