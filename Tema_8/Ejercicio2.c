@@ -40,8 +40,8 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < n; i++)
     {
         /* code */
-        free(&t[i]);
-        free(&p[i]);
+        free(t[i]);
+        free(p[i]);
         free(&q[i]);
     }
     

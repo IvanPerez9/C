@@ -46,11 +46,11 @@ int main(int argc, char const *argv[])
     }
     
     free(vector);
+    free(matriz);
     // Linberar matriz y cada columna
     for (int j = 0; j < n; j++)
     {
         free(matriz[j]);
     }
-    free(matriz);
     return 0;
 }
