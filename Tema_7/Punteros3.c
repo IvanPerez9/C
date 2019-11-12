@@ -2,6 +2,8 @@
 Dada una matriz de tamaño 4x3, implementa un programa que, haciendo uso de
 aritmética de punteros, calcule la suma de cada una de sus filas y las imprima
 por pantalla
+
+USO DE PUNTEROS
 */
 
 #include<stdio.h>
@@ -20,13 +22,13 @@ int main(int argc, char const *argv[])
     // Filas de manera consecutiva 
     for (int i = 0; i < 4; i++)
     {
-        fila = matriz[i];
+        fila = matriz[i]; // Puntero
         for (int j = 0; j < 3; j++)
         {
             sumaFila += * fila++;
-            printf("%d \n" , sumaFila);
         }
-        printf("\n");
+        printf("%d \n" , sumaFila);
+        sumaFila = 0;
     }
     
     return 0;

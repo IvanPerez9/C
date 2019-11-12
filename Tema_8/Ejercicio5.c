@@ -6,24 +6,23 @@ La transpuesta es una matriz que cambia las filas por las columnas
 #include <stdio.h>
 #include <stdlib.h>
 
-
 int main(int argc, char const *argv[])
 {
     int ** matriz;
     int ** trans;
     int filas = 3;
-    int columnas = 3;
+    int columnas = 2;
 
     matriz = (int **) malloc (filas * sizeof( int *));
     trans = (int **) calloc (columnas , sizeof( int *));
-    for (int i = 0; i < columnas; i++)
+    for (int i = 0; i < filas; i++)
     {
         matriz[i] = (int *) malloc (columnas * sizeof(int));
     }
     
     for (int i = 0; i < filas; i++)
     {
-         trans[i] = (int *) calloc (filas , sizeof(int));  // Iini a 0 con calloc
+         trans[i] = (int *) calloc (columnas , sizeof(int));  // Iini a 0 con calloc
     }
     
     

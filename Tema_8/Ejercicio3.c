@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     int n = 3;
     // Primero el numero de filas y luego cada una de las por separado
     matriz = (int **) malloc(m * sizeof(int *));
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
         matriz[i] = (int *) malloc (n * sizeof(int));
     }

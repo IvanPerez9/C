@@ -19,17 +19,17 @@ int main(int argc, char const *argv[])
 
     // Primero el numero de filas y luego cada una de las por separado
     matriz = (int **) malloc(m * sizeof(int *));
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
         matriz[i] = (int *) malloc (n * sizeof(int));
     }
     matrix2 = (int **) malloc (m * sizeof(int *));
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
         matrix2[i] = (int *) malloc (n * sizeof (int));
     }
     ret = (int **) malloc (m * sizeof(int *));
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
         ret[i] = (int *) malloc (n * sizeof(int)); 
     }
