@@ -7,5 +7,4 @@
  - Operaciones basicas, acceso datos, mostrado pantalla, lectura pantalla
  - Punteros general
  - Punteros array y matriz -> posicion , recorrer
- - Estructuras, listas ...
- - Debuggear 
+ - Estructuras, listas ... listas de sudokus, CRUD 

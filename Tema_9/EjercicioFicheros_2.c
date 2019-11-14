@@ -3,6 +3,7 @@ Crea un programa que abra un archivo de texto, lea su contenido línea por líne
 muestre por consola
 */
 #include<stdio.h>
+#include <stdlib.h>
 #define MAX 15
 
 int main(int argc, char const *argv[])

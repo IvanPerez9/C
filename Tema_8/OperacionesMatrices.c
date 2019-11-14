@@ -11,6 +11,11 @@ void mostrarMatriz (int matriz [FIL][COL]);
 void sumaMatriz (int matriz1 [FIL][COL] , int matriz2 [FIL][COL], int ret [FIL][COL]);
 void transpuestaMatriz (int matriz[FIL][COL] , int ret[COL][FIL]);
 void mostrarTranspuesta (int matriz [COL][FIL]);
+void calcularDeterminante (int matriz[2][2], int * determinante);
+void rellenarMatriz (int matriz[2][2]);
+void multiplicarMatriz (int matriz1 [FIL][COL] , int matriz2 [FIL][COL], int ret [FIL][COL]);
+
+// Ejercicio 4 de T8 -> Suma y multiplicacion dinamica
 
 int main(int argc, char const *argv[])
 {
@@ -21,6 +26,8 @@ int main(int argc, char const *argv[])
     int matriz2[FIL][COL] = {{1,1},
                         {1,2},
                         {1,2}};
+
+    int matrixDet [2][2] = {0};
 
     int sum [FIL][COL] = {0}; // Relleno de 0
     int trans[COL][FIL] = {0};
@@ -40,7 +47,22 @@ int main(int argc, char const *argv[])
     transpuestaMatriz(matriz1 , trans);
     mostrarTranspuesta(trans);
 
-    // Falta punteros, como ejercicio 4 de punteros, pero para 2 2 por ejemplo
+    // Determinante, como ejercicio 4 de punteros, pero para 2 2 
+    printf("Determinante de una matriz: \n");
+    printf("Introduce matriz: \n");
+    rellenarMatriz(matrixDet);
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            printf("\t%d " , matrixDet[i][j] );
+        }
+        printf("\n");
+    }
+    // Puntero para almacenar determinante
+    int determinante ;
+    calcularDeterminante(matrixDet, &determinante);
+    printf("Determinante de la matrixDet es: %d \n" , determinante);
 
     return 0;
 }
@@ -92,3 +114,25 @@ void transpuestaMatriz (int matriz[FIL][COL] , int ret[COL][FIL]){
         }
     }
 }
+
+/*
+Rellenar una matriz de 2x2 desde consola
+*/
+void rellenarMatriz (int matriz[2][2]){
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            scanf("%d" , &matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+/*
+Determinante matriz de 2x2 -> T7 Punteros4.c tiene la de 3x3
+*/
+void calcularDeterminante (int matriz[2][2], int * determinante){
+    *determinante =  ((matriz[0][0] * matriz[1][1]) - (matriz[0][1] * matriz[1][0])); 
+}
+

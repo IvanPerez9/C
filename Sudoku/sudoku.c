@@ -238,6 +238,7 @@ void writeSudokuFile (int tablero[N][N]){
     FILE * fichero;
     if ((fichero = fopen("FicheroSudoku.bin" , "wb+")) == NULL) {
         perror("Error al abrir el fichero modo escritura");
+        exit(1);
     }
 
     if (fwrite(tablero , sizeof(int) , N*N , fichero) != 81){
@@ -255,6 +256,7 @@ void readSudokuFromFile (){
     FILE * fichero;
     if ((fichero = fopen("FicheroSudoku.bin" , "rb")) == NULL) {
         perror("Error al abrir el fichero modo lectura");
+        exit(1);
     }
 
     int grid [N][N] = {0};
@@ -267,7 +269,6 @@ void readSudokuFromFile (){
         }
     }
     fclose(fichero);
-
     // Mostrarlo
     pintarTablero(grid);
 }

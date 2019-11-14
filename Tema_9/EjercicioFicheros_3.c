@@ -18,5 +18,6 @@ int main(int argc, char const *argv[])
     fputs(entrada , fichero);
 
     fclose(fichero);
+    fflush(stdin);
     return 0;
 }
