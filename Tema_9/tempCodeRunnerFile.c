@@ -1,1 +1,1 @@
-fwrite(&contacto , sizeof(contacto), 1, fichero);
+struct persona p

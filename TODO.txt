@@ -8,3 +8,4 @@
  - Punteros general
  - Punteros array y matriz -> posicion , recorrer
  - Estructuras, listas ... listas de sudokus, CRUD 
+ - Linked list del struct

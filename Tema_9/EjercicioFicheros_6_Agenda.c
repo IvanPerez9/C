@@ -16,7 +16,7 @@ void mostrarListaContactos (char nombreFichero[]);
 struct datosContacto{
 	char nombre[60];
     char apellido [60];
-	char telefono[15];
+	char telefono [10];
 };
 
 int main(int argc, char const *argv[])
@@ -99,7 +99,12 @@ void crearAgendaNueva (char nombreFichero[]){
         fflush(stdin);
         gets(contacto.telefono);
         printf("\n");
-        fwrite(&contacto , sizeof(contacto), 1, fichero);
+        struct datosContacto contactoPrueba = {"Ivan" , "Perez" , "123"}; // Lo meto por defecto
+        size_t i = fwrite(&contactoPrueba , sizeof(struct datosContacto), 1, fichero);
+        if (i < 1){
+            printf("No estoy escribiendo:");
+        }
+        fwrite(&contacto , sizeof(struct datosContacto), 1, fichero);
         contador++;
 
     } while (contador != numContactos);
@@ -128,23 +133,28 @@ void nuevoContacto (char nombreFichero[]){
     fflush(stdin);
     gets(nuevoC.telefono);
 
-    fwrite(&nuevoC , sizeof(nuevoC), 1, fichero);
+    size_t comprobacion = fwrite(&nuevoC , sizeof(struct datosContacto), 1, fichero);
+    if (comprobacion < 1){
+        printf("Error al escribir");
+    }
     printf("Nueno contacto annadido \n");
     fclose(fichero);
 }
 
 void mostrarListaContactos (char nombreFichero[]){
     FILE * fichero;
-    if ((fichero = fopen(nombreFichero, "a")) == NULL){
+    if ((fichero = fopen(nombreFichero, "r")) == NULL){
         perror("Error al abrir el fichero binario \n");
         exit(1);
     }
 
     struct datosContacto contacto;
-    fread(&contacto , sizeof(contacto), 1, fichero); // Saco los contactos 1 a 1 ?
-
-    while(!feof(fichero)){
-
+    while(fread(&contacto , sizeof(struct datosContacto), 1, fichero)){
+        printf(" \t Nombre: %s \n" , contacto.nombre);
+        printf("\t Apellido: %s \n" , contacto.apellido);
+        printf("\t Telefono: %s \n" , contacto.telefono);
+        printf("\n");
+        printf("\n");
     }
 
     fclose(fichero);
@@ -152,32 +162,33 @@ void mostrarListaContactos (char nombreFichero[]){
 
 void buscarContacto (char nombreFichero[]){
     FILE * fichero;
-    if ((fichero = fopen(nombreFichero, "a")) == NULL){
+    if ((fichero = fopen(nombreFichero, "r")) == NULL){
         perror("Error al abrir el fichero binario \n");
         exit(1);
     }
 
     struct datosContacto contacto;
-    fgets(contacto.nombre , sizeof contacto , fichero);
     printf("Introduce el nombre del contacto que quiere buscar: ");
     char nombreBuscar [60];
     scanf("%s" , &nombreBuscar);
-    printf("%s", nombreBuscar);
-    printf("%s" , contacto.nombre);
 
-    while(!feof(fichero)){
+    while(fread(&contacto , sizeof(struct datosContacto), 1, fichero)){
         int ret = strcmp(strlwr(contacto.nombre), strlwr(nombreBuscar));
         if (ret == 0){
-            printf("\n Nombre: %s \n" , contacto.nombre);
-            printf("\n Apellido: %s" , contacto.apellido);
-            printf("\n Telefono: %s" , contacto.telefono);
+            printf("ENCONTRADO \n");
+            printf(" \t Nombre: %s \n" , contacto.nombre);
+            printf("\t Apellido: %s \n" , contacto.apellido);
+            printf("\t Telefono: %s \n" , contacto.telefono);
+            printf("\n");
+            printf("\n");
+            fclose(fichero);
             return;
         } else {
             printf("Nombre no encontrado \n");
             fclose(fichero);
             return;
         }
-        fgets(contacto.nombre , sizeof contacto , fichero);
     }
     fclose(fichero);
+    return;
 }
