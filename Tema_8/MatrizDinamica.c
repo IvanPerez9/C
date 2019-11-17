@@ -40,10 +40,11 @@ int main()
     int i,j;
     // Declaro matriz
     int **a=(int **)malloc(M*sizeof(int));
-    for(i=0;i<N;i++)
+    for(i=0;i<M;i++)
         a[i]=(int *)malloc(N*sizeof(int));
 
     // Relleno la matriz dinamica
+    printf("Rellena matriz: \n");
     ini(a,M,N);
     printf("\n");
 

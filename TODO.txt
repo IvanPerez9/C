@@ -1,6 +1,6 @@
  
  - Saber memoria dinamica bien
- - Matrices en memoria dinamica
+ - Matrices en memoria dinamica (DONE)
  - Operaciones con Matrices (DONE)
  - Struct ojo -> Agenda (DONE)
  - Entrada y salida ficheros -> fwrite y fputs diferencias .. (DONE)
