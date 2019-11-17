@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-// False == 1
+// False == 0
 // ch >= 97 && ch <= 122) || (ch >= 65 && ch <= 90) en ASCII
 int soloLetras (char pw []){
     int salida = 0;

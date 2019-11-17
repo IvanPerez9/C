@@ -17,26 +17,26 @@ int main(int argc, char const *argv[])
     printf("Introduce palabra a encriptar: ");
     char palabra [15];
     scanf("%s" , palabra);
-    encriptar(&palabra); // Paso por referencia
+    encriptar(palabra);
     printf("Palabra modificada +2 :");
     for (int i = 0; i < 15+1; i++)
     {
-        printf("%d", palabra[i]);
+        printf("%d ", palabra[i]);
     }
     
     return 0;
 }
 
-void encriptar (char *palabra){
+void encriptar (char palabra[]){
     int encriptado [15];
     for (int i = 0; i < 15+1; i++)
     {
         encriptado[i] = palabra[i];
     }
-    printf("La palabra %s en ASCII es: ");
+    printf("La palabra '%s' en ASCII es: " , palabra);
     for (int i = 0; i < 15+1; i++)
     {
-        printf("%d", encriptado[i]);
+        printf("%d ", encriptado[i]);
         palabra[i] = palabra[i] + 2;
     }
     printf("\n");

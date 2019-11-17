@@ -15,6 +15,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
+// Numero dado la vuelta
 int funcionInverso (){
     printf("Introduce un numero entero: ");
     int num = 0;

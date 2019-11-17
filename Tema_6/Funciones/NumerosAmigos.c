@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-    /* REVISAR
+    /*  
     Implementa un programa que compruebe si dos números enteros son amigos o
     no. Dos números son amigos si la suma de los divisores de uno coincide con el
     otro y viceversa. Por ejemplo, 220 y 284 son amigos porque la suma de sus

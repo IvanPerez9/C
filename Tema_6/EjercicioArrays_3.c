@@ -14,7 +14,6 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < N; i++)
     {
-        /* code */
         if (array[i] > max){
             max = array[i];
         }

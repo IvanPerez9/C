@@ -1,11 +1,11 @@
  
  - Saber memoria dinamica bien
  - Matrices en memoria dinamica
- - Operaciones con Matrices
- - Struct ojo -> Agenda
- - Entrada y salida ficheros -> fwrite y fputs diferencias ..
- - Operaciones basicas, acceso datos, mostrado pantalla, lectura pantalla
+ - Operaciones con Matrices (DONE)
+ - Struct ojo -> Agenda (DONE)
+ - Entrada y salida ficheros -> fwrite y fputs diferencias .. (DONE)
+ - Operaciones basicas, acceso datos, mostrado pantalla, lectura pantalla (DONE)
  - Punteros general
  - Punteros array y matriz -> posicion , recorrer
- - Estructuras, listas ... listas de sudokus, CRUD 
- - Linked list del struct
+ - Estructuras, listas ... listas de sudokus, CRUD (DONE)
+ - Linked list del struct (DONE)

@@ -12,8 +12,6 @@ Hechos en el tema 5
 
 int main(int argc, char const *argv[])
 {
-    /* code */
-
     int suma = 0;
     int a [N];
     int b [N];
