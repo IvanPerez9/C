@@ -36,11 +36,11 @@ int main(int argc, char const *argv[])
                          {9,8,1, 3,4,5, 2,7,6},
                          {3,7,4, 9,6,2, 8,1,5}};
 
-        /* Prueba entrada teclado
+        // Prueba entrada teclado
         int tableroPrueba [N][N] = {};
         introducirSudoku(tableroPrueba);
         pintarTablero(tableroPrueba);
-        */
+        
     int opcion;
     do
     {

@@ -35,11 +35,47 @@ void freeMatrix ( int **arr, int n){
     }
 }
 
+void writeFile (int **arr){
+    FILE * fichero;
+    if ((fichero = fopen("ficheroMatriz.bin" , "wb+")) == NULL){
+        perror("Error al abrir el fichero");
+        exit(1);
+    }
+
+    if (fwrite(arr , sizeof(int), M*N , fichero) != N*M){
+        perror("Error al escribir en fichero");
+    }
+    fclose(fichero);
+}
+
+void readFile (){
+    FILE * fichero;
+    if ((fichero = fopen("ficheroMatriz.bin" , "rb")) == NULL){
+        perror("Error al ebrir fichero");
+        exit(1);
+    }
+
+    int ** ret = (int **) malloc (M * sizeof(int *));
+    for (int i = 0; i < M; i++)
+    {
+        ret[i] = (int *) malloc (N * sizeof(int));
+    }
+
+    if ((fread(ret , sizeof(int) , M*N, fichero)) != M*N){
+        perror("Error al leer fichero \n");
+        exit(1);
+    }
+
+    fclose(fichero);
+    imprimir(ret, M, N);
+    
+}
+
 int main()
 {
     int i,j;
     // Declaro matriz
-    int **a=(int **)malloc(M*sizeof(int));
+    int **a=(int **)malloc(M*sizeof(int *));
     for(i=0;i<M;i++)
         a[i]=(int *)malloc(N*sizeof(int));
 
@@ -51,6 +87,12 @@ int main()
     // Imprimo
     imprimir(a, M, N);
     printf("\n");
+
+    //Escribo en fichero
+    writeFile(a);
+
+    // Leo de fichero
+    readFile();
 
     // Libero
     freeMatrix(a,N);
