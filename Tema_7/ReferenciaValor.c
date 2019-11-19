@@ -1,5 +1,6 @@
 /*
-Diferencia entre paso por valor y referencia en arrays
+Diferencia entre paso por valor y referencia en arrays.
+Por defecto todo es por Valor (copia) salvo los array que por defecto es por referencia -> Se modifica el contenido
 */
 #include <stdlib.h>
 #include <stdio.h>

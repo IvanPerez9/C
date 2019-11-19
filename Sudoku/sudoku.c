@@ -37,9 +37,10 @@ int main(int argc, char const *argv[])
                          {3,7,4, 9,6,2, 8,1,5}};
 
         // Prueba entrada teclado
-        int tableroPrueba [N][N] = {};
+        /*int tableroPrueba [N][N] = {};
         introducirSudoku(tableroPrueba);
         pintarTablero(tableroPrueba);
+        */
         
     int opcion;
     do
@@ -249,7 +250,7 @@ void writeSudokuFile (int tablero[N][N]){
 
 /*
 Leer sudoku desde fichero
-params: 
+params:
 return: Mostrado de sudoku leido desde el fichero
 */
 void readSudokuFromFile (){
