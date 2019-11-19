@@ -24,8 +24,12 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < N; i++)
     {
-        if (array[i]> *max) max = &array[i]; // Max apunta al valor
-        if (array[i]< *min) min = (array+i);
+        if (array[i]> *max) {
+            max = &array[i]; // Max apunta al valor
+        }
+        if (array[i]< *min){
+            min = (array+i); // Lo mismo
+        } 
     }
 
     printf("Min %d , y Max %d" , *min , *max);

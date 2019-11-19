@@ -9,24 +9,85 @@ pedirá al usuario que introduzca letras hasta completar la palabra o hasta habe
 realizado 5 intentos erróneos
 */
 
-int main(int argc, char const *argv[])
-{
-    int array[10];
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 
-    printf("Introducir un palabra como maximo de 10 caracteres \n");
-    scanf("Palabra: %s \n" , &(array[0]));
+#define palabra "castigo"
+#define vidas 6
 
-    for (int i = 0; i < 5; i++)
-    {
-        /* code */
-        printf("Introduzca una letra de esa palabra, tiene %d intentos \n" , i );
-        char letra = NULL;
-        scanf("%c" , &letra);
-    }
+int comparar(char*,char*,char);
+void rellenar(char*);
+int contener(char,char*);
+void mostrar(char*);
 
-    printf("Introduzca letras sueltas \n");
-    
+int main() {
+   printf("longitud de la palabra: %d\n",strlen(palabra));
+   int restantes = vidas;
+   char* letras =(char*) malloc(strlen(palabra)*(sizeof(char)+1)); // Array de letras de la palabra
+   rellenar(letras);
+   char c;
+
+   do{
+       mostrar(letras);
+
+       printf("\n\nVidas restantes: %d\n",restantes);
+       do{
+           printf("Dame letra\n");
+           scanf(" %c",&c);
+       
+       }while(contener(c,letras));
+
+    restantes = restantes - comparar(palabra,letras,c);    
+      
 
 
+   }while ((restantes>0)&&(strcmp(palabra,letras)!=0));
+
+   if (restantes==0) printf("Fallaste\n");
+   else printf("Enhorabuena\n"); 
+    free(letras);
     return 0;
+  }
+
+int comparar(char* buscada,char*rellena,char letra){
+    int encontrar = 0;
+    for (int i=0;i<strlen(palabra);i++){
+       if (*(buscada + i)== letra){
+           encontrar=1;
+           *(rellena+i)=letra;
+       }
+   }
+  
+   if (encontrar==0) return 1;
+   else return 0;
+
+}
+
+/*
+Poner al final \0 para saber donde acaba
+*/
+void rellenar(char* letras){
+    for (int i=0;i<strlen(palabra);i++){
+       *(letras + i)='_';
+   }
+   *(letras + strlen(palabra))='\0';
+}
+
+int contener(char letra,char* letras){
+    int contener=0;
+    int i=0;
+    do{
+       contener=(*(letras + i)== letra);
+       i++;
+    }while(i<strlen(palabra));
+   return contener;
+}
+
+void mostrar(char* letras){
+     for (int i=0;i<strlen(palabra);i++){
+        // printf(" %c ",*(letras + i));
+         printf(" %c ",letras[i]);
+   }
 }
